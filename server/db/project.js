@@ -1,5 +1,3 @@
-//defind projects
-
 const Sequelize = require('sequelize');
 const db = require('./database');
 
@@ -8,6 +6,7 @@ const Project = db.define('project', {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
+      notEmpty: true,
       min: 0,
     },
   },

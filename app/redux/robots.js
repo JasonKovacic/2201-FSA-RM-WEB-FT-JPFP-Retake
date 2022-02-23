@@ -1,9 +1,33 @@
-export const setRobots = () => {};
+import axios from 'axios';
 
-export const fetchRobots = () => {};
+// ACTION TYPES
+const SET_ROBOTS = 'SET_ROBOTS';
 
-// Take a look at app/redux/index.js to see where this reducer is
-// added to the Redux store with combineReducers
-export default function robotsReducer() {
-  return null;
-}
+// ACTION CREATORS
+
+const _setRobots = (robots) => ({
+  type: SET_ROBOTS,
+  robots,
+});
+
+// THUNK CREATORS
+export const fetchRobots = () => async (dispatch) => {
+  const { data } = await axios.get('/api/robots');
+  dispatch(_setRobots(data));
+};
+
+const initialState = {
+  robots: [],
+  singleRobot: {},
+};
+
+const robotsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SET_ROBOTS:
+      return { ...state, robots: action.robots };
+    default:
+      return state;
+  }
+};
+
+export default robotsReducer;

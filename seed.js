@@ -34,9 +34,30 @@ const robots = [
 ];
 
 const projects = [
-  { id: 1, title: 'Build barn', description: 'Lorem Ipsum' },
-  { id: 2, title: 'Discover love', completed: true, deadline: '' },
-  { id: 3, title: 'Open the pod bay doors', priority: 10 },
+  {
+    id: 1,
+    title: 'Build barn',
+    description: 'Lorem Ipsum',
+    completed: true,
+    deadline: '2022-02-22',
+    priority: 9,
+  },
+  {
+    id: 2,
+    title: 'Paint Barn',
+    description: 'Lorem Ipsum',
+    completed: true,
+    deadline: '2022-03-22',
+    priority: 8,
+  },
+  {
+    id: 3,
+    title: 'Stack barn with HAY',
+    description: 'L',
+    completed: true,
+    deadline: '2022-04-22',
+    priority: 10,
+  },
 ];
 
 const seed = async () => {

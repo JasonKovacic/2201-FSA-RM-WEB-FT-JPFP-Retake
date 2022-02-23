@@ -1,21 +1,55 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { fetchRobots } from '../redux/robots';
+
+import { Link } from 'react-router-dom';
+//change
+import Robot from './Robot';
+
+//axios
 
 // Notice that we're exporting the AllRobots component twice. The named export
 // (below) is not connected to Redux, while the default export (at the very
 // bottom) is connected to Redux. Our tests should cover _both_ cases.
-export class AllRobots extends React.Component {
+
+class AllRobots extends React.Component {
+  componentDidMount() {
+    this.props.fetchRobots();
+  }
+
   render() {
-    return <div />;
+    console.log('all robots props', this.props);
+    return (
+      <main>
+        <h3>All Robots</h3>
+
+        <ul>
+          {this.props.robots.map((robot) => (
+            <li key={robot.id}>
+              <Robot robot={robot} />
+            </li>
+          ))}
+        </ul>
+
+        {/* {this.props.robots.map((robot) => (
+          <Link to={`/robots/${robot.id}`} key={robot.id}>
+            <div>
+              <img src={robot.imageUrl} />
+              <p>{robot.name}</p>
+            </div>
+          </Link>
+        ))} */}
+      </main>
+    );
   }
 }
 
-const mapState = () => {
-  return {};
+const mapStateToProps = (state) => {
+  return state.robots;
 };
 
-const mapDispatch = () => {
-  return {};
-};
+const mapDispatchToProps = (dispatch) => ({
+  fetchRobots: () => dispatch(fetchRobots()),
+});
 
-export default connect(mapState, mapDispatch)(AllRobots);
+export default connect(mapStateToProps, mapDispatchToProps)(AllRobots);
