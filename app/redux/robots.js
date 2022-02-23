@@ -16,6 +16,32 @@ const _gotSingleRobot = (robot) => ({
   robot,
 });
 
+const _ = (robots) => ({
+  type: GOT_ALL_ROBOTS,
+  robots,
+});
+
+// const _createRobot = (robot) => {
+//   return {
+//     type: CREATE_ROBOT,
+//     robot,
+//   };
+// };
+
+// const _updateRobot = (robot) => {
+//   return {
+//     type: UPDATE_ROBOT,
+//     robot,
+//   };
+// };
+
+// const _deleteRobot = (robot) => {
+//   return {
+//     type: DELETE_ROBOT,
+//     robot,
+//   };
+// };
+
 // THUNK CREATORS
 export const fetchRobots = () => async (dispatch) => {
   const { data } = await axios.get('/api/robots');
@@ -66,6 +92,10 @@ const robotsReducer = (state = initialState, action) => {
     //   return [...state, action.robot];
     // case DELETE_ROBOT:
     //   return state.filter((robot) => robot.id !== action.robot.id);
+    // case UPDATE_ROBOT:
+    //   return state.map((robot) =>
+    //     robot.id === action.robot.id ? action.robot : robot
+    //   );
     default:
       return state;
   }

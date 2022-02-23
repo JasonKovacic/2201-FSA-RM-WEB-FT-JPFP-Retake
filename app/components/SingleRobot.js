@@ -18,18 +18,23 @@ class SingleRobot extends React.Component {
 
     return (
       <div>
+        <h2>Robot Information:</h2>
         <ul>
           <li>name: {singleRobot.name}</li>
           <li>imageURL: {singleRobot.imageUrl}</li>
           <li>fuel type: {singleRobot.fuelType}</li>
           <li>fuel level: {singleRobot.fuelLevel}</li>
         </ul>
-
-        {singleRobot.projects && singleRobot.projects.length
-          ? singleRobot.projects.map((project) => (
-              <div key={project.id}>{project.title}</div>
-            ))
-          : 'No projects assigned'}
+        <h2> Projects Assigned:</h2>
+        <ul>
+          {singleRobot.projects && singleRobot.projects.length
+            ? singleRobot.projects.map((project) => (
+                <div key={project.id}>
+                  <li>{project.title}</li>
+                </div>
+              ))
+            : 'No projects assigned'}
+        </ul>
       </div>
     );
   }

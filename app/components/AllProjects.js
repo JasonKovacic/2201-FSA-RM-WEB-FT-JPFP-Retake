@@ -22,11 +22,13 @@ class AllProjects extends React.Component {
       <main>
         <h2>All Projects</h2>
         <ul>
-          {this.props.projects.map((project) => (
-            <li key={project.id}>
-              <Project project={project} />
-            </li>
-          ))}
+          {this.props.projects && this.props.projects.length
+            ? this.props.projects.map((project) => (
+                <li key={project.id}>
+                  <Project project={project} />
+                </li>
+              ))
+            : 'Projects Loading...'}
         </ul>
       </main>
     );

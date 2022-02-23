@@ -28,7 +28,7 @@ class AllRobots extends React.Component {
                   <Robot robot={robot} />
                 </li>
               ))
-            : 'Robots loading...'}
+            : 'Robots Loading...'}
         </ul>
       </main>
     );
