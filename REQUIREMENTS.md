@@ -10,10 +10,10 @@ The requirements below are broken into separate **tiers**, which model the way w
 
 - [x] Write a component to display a list of all robots (at least their names and imageUrls)
 - [x] Write a component to display a list of all projects (at least their titles and deadlines)
-- [ ] Write a robots sub-reducer to manage robots in your Redux store
-- [ ] Write a projects sub-reducer to manage projects in your Redux store
-- [] Display the AllRobots component when the url matches `/robots`
-- [ ] Display the AllProjects component when the url matches `/projects`
+- [x] Write a robots sub-reducer to manage robots in your Redux store
+- [x] Write a projects sub-reducer to manage projects in your Redux store
+- [x]] Display the AllRobots component when the url matches `/robots`
+- [x] Display the AllProjects component when the url matches `/projects`
 - [x] Add links to the navbar that can be used to navigate to the all-projects view and the all-robots view
 
 #### Backend
@@ -49,19 +49,19 @@ Congrats! You have completed your first vertical slice! Make sure to `commit -m 
 #### Frontend
 
 - Write a component to display a single robot with the following information:
-  - [ ] The robot's name, image, fuelType, fuelLevel
+  - [x] The robot's name, image, fuelType, fuelLevel
   - [ ] The names of all their assigned projects (or a helpful message if they don't have any)
-- [ ] Display the appropriate robot when the url matches `/robots/:robotId`
-- [ ] Clicking on a robot from the all-robots view should navigate to show that robot in the single-robot view
+- [x] Display the appropriate robot when the url matches `/robots/:robotId`
+- [x] Clicking on a robot from the all-robots view should navigate to show that robot in the single-robot view
 
 - Write a component to display a single project with the following information:
-  - [ ] The project's title, deadline, priority, description
+  - [x] The project's title, deadline, priority, description
   - [ ] A list of the names of all robots in that project (or a helpful message if it doesn't have any robots)
-- [ ] Display the appropriate project's info when the url matches `/projects/:projectId`
-- [ ] Clicking on a project from the all-projects view should navigate to show that project in the single-project view
+- [x] Display the appropriate project's info when the url matches `/projects/:projectId`
+- [x] Clicking on a project from the all-projects view should navigate to show that project in the single-project view
 
-- [ ] Clicking on the name of a robot in the single-project view should navigate to show that robot in the single-robot view
-- [ ] Clicking on the name of a project in the single-robot view should navigate to show that project in the single-project view
+- [x] Clicking on the name of a robot in the single-project view should navigate to show that robot in the single-robot view
+- [x] Clicking on the name of a project in the single-robot view should navigate to show that project in the single-project view
 
 #### Backend
 

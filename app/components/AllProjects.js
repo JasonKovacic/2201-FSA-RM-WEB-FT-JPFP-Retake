@@ -1,7 +1,7 @@
 import React from 'react';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-//change
+
 import { fetchProjects } from '../redux/projects';
 import Project from './Project';
 
@@ -17,9 +17,10 @@ class AllProjects extends React.Component {
   }
 
   render() {
+    console.log('all robots props', this.props);
     return (
-      <div>
-        <h2>Projects</h2>
+      <main>
+        <h2>All Projects</h2>
         <ul>
           {this.props.projects.map((project) => (
             <li key={project.id}>
@@ -27,7 +28,7 @@ class AllProjects extends React.Component {
             </li>
           ))}
         </ul>
-      </div>
+      </main>
     );
   }
 }

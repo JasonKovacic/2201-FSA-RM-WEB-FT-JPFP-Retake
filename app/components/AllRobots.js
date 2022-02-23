@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchRobots } from '../redux/robots';
-
 import { Link } from 'react-router-dom';
-//change
 import Robot from './Robot';
 
 //axios
@@ -30,15 +28,6 @@ class AllRobots extends React.Component {
             </li>
           ))}
         </ul>
-
-        {/* {this.props.robots.map((robot) => (
-          <Link to={`/robots/${robot.id}`} key={robot.id}>
-            <div>
-              <img src={robot.imageUrl} />
-              <p>{robot.name}</p>
-            </div>
-          </Link>
-        ))} */}
       </main>
     );
   }

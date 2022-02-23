@@ -2,13 +2,7 @@ import axios from 'axios';
 
 // ACTION TYPES
 const SET_PROJECTS = 'SET_PROJECTS';
-
-export const setProjects = (projects) => {
-  return {
-    type: SET_PROJECTS,
-    projects,
-  };
-};
+const GOT_SINGLE_PROJECT = 'GOT_SINGLE_PROJECT';
 
 // ACTION CREATORS
 const _setProjects = (projects) => {
@@ -17,6 +11,11 @@ const _setProjects = (projects) => {
     projects,
   };
 };
+
+const _gotSingleProject = (project) => ({
+  type: GOT_SINGLE_PROJECT,
+  project,
+});
 
 // THUNK CREATORS
 export const fetchProjects = (projects) => {
@@ -30,18 +29,28 @@ export const fetchProjects = (projects) => {
   };
 };
 
+export const getSingleProject = (id) => async (dispatch) => {
+  const { data } = await axios.get(`/api/projects/${id}`);
+  console.log('project data', data);
+  dispatch(_gotSingleProject(data));
+};
+
 const initialState = {
   projects: [],
   singleProject: {},
 };
 
-export default function projectsReducer(state = initialState, action) {
+const projectsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_PROJECTS:
       return { ...state, projects: action.projects };
+    case GOT_SINGLE_PROJECT:
+      return { ...state, singleProject: action.project };
     default:
       return state;
   }
-}
+};
+
+export default projectsReducer;
 // Take a look at app/redux/index.js to see where this reducer is
 // added to the Redux store with combineReducers
