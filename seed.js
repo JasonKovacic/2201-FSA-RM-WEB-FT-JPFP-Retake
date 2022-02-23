@@ -78,6 +78,17 @@ const seed = async () => {
       })
     );
 
+    const r2d2 = await Robot.findOne({
+      where: {
+        name: 'R2-D2',
+      },
+    });
+
+    const projectsToAssign = await Project.findAll();
+
+    await r2d2.addProject(projectsToAssign[0]);
+    await r2d2.addProject(projectsToAssign[1]);
+
     // console.log(green('Seeding success!'));
     db.close();
   } catch (err) {

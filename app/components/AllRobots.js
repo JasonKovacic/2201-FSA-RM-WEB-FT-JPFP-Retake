@@ -22,20 +22,22 @@ class AllRobots extends React.Component {
         <h3>All Robots</h3>
 
         <ul>
-          {this.props.robots.map((robot) => (
-            <li key={robot.id}>
-              <Robot robot={robot} />
-            </li>
-          ))}
+          {this.props.robots.robots && this.props.robots.robots.length
+            ? this.props.robots.robots.map((robot) => (
+                <li key={robot.id}>
+                  <Robot robot={robot} />
+                </li>
+              ))
+            : 'Robots loading...'}
         </ul>
       </main>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return state.robots;
-};
+const mapStateToProps = (state) => ({
+  robots: state.robots,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   fetchRobots: () => dispatch(fetchRobots()),

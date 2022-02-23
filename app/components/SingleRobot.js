@@ -24,6 +24,12 @@ class SingleRobot extends React.Component {
           <li>fuel type: {singleRobot.fuelType}</li>
           <li>fuel level: {singleRobot.fuelLevel}</li>
         </ul>
+
+        {singleRobot.projects && singleRobot.projects.length
+          ? singleRobot.projects.map((project) => (
+              <div key={project.id}>{project.title}</div>
+            ))
+          : 'No projects assigned'}
       </div>
     );
   }
