@@ -85,6 +85,8 @@ const seed = async () => {
     });
 
     const projectsToAssign = await Project.findAll();
+    //const robotsToAssign = await Robot.findAll();
+    //copy const r2d2 and await functions below for robots and projects?
 
     await r2d2.addProject(projectsToAssign[0]);
     await r2d2.addProject(projectsToAssign[1]);

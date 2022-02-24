@@ -26,4 +26,12 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+router.post('/', async (req, res, next) => {
+  try {
+    res.status(201).send(await Project.create(req.body));
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

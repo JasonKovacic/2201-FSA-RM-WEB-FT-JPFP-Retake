@@ -50,13 +50,13 @@ Congrats! You have completed your first vertical slice! Make sure to `commit -m 
 
 - Write a component to display a single robot with the following information:
   - [x] The robot's name, image, fuelType, fuelLevel
-  - [ ] The names of all their assigned projects (or a helpful message if they don't have any)
+  - [x] The names of all their assigned projects (or a helpful message if they don't have any)
 - [x] Display the appropriate robot when the url matches `/robots/:robotId`
 - [x] Clicking on a robot from the all-robots view should navigate to show that robot in the single-robot view
 
 - Write a component to display a single project with the following information:
   - [x] The project's title, deadline, priority, description
-  - [ ] A list of the names of all robots in that project (or a helpful message if it doesn't have any robots)
+  - [x] A list of the names of all robots in that project (or a helpful message if it doesn't have any robots)
 - [x] Display the appropriate project's info when the url matches `/projects/:projectId`
 - [x] Clicking on a project from the all-projects view should navigate to show that project in the single-project view
 
@@ -65,8 +65,8 @@ Congrats! You have completed your first vertical slice! Make sure to `commit -m 
 
 #### Backend
 
-- [] Write a route to serve up a single robot (based on their id), _including that robot's projects_
-- [] Write a route to serve up a single project (based on its id), _including that projects' robots_
+- [x] Write a route to serve up a single robot (based on their id), _including that robot's projects_
+- [x] Write a route to serve up a single project (based on its id), _including that projects' robots_
 
 Congrats! You have completed your second vertical slice! Make sure to `commit -m "Feature: Get Single Project and Robot"` before moving on (see RUBRIC.md - points are awarded/deducted for a proper git workflow)!
 
@@ -78,12 +78,12 @@ Congrats! You have completed your second vertical slice! Make sure to `commit -m
 
 #### Frontend
 
-- [ ] Write a component to display a form for adding a new robot that contains _at least_ an input for name
+- [x] Write a component to display a form for adding a new robot that contains _at least_ an input for name
 - [ ] Display this component as part of the all-robots view, alongside the list of robots
 - Submitting the form with valid data should:
 
-  - [ ] Make an AJAX request that causes the new robot to be persisted in the database
-  - [ ] Add the new robot to the list of robots without needing to refresh the page
+  - [x] Make an AJAX request that causes the new robot to be persisted in the database
+  - [x] Add the new robot to the list of robots without needing to refresh the page
 
 - [ ] Write a component to display a form for adding a new project that contains _at least_ an input for title
 - [ ] Display this component as part of the all-projects view, alongside the list of projects

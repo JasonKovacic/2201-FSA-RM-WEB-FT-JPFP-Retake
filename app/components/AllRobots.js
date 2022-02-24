@@ -16,28 +16,27 @@ class AllRobots extends React.Component {
   }
 
   render() {
-    console.log('all robots props', this.props);
     return (
-      <main>
+      <div>
         <h3>All Robots</h3>
-
+        <Link to="addrobot">New Robot</Link>
         <ul>
-          {this.props.robots.robots && this.props.robots.robots.length
-            ? this.props.robots.robots.map((robot) => (
+          {this.props.robots && this.props.robots.length
+            ? this.props.robots.map((robot) => (
                 <li key={robot.id}>
                   <Robot robot={robot} />
                 </li>
               ))
             : 'Robots Loading...'}
         </ul>
-      </main>
+      </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  robots: state.robots,
-});
+const mapStateToProps = (state) => {
+  return state.robots;
+};
 
 const mapDispatchToProps = (dispatch) => ({
   fetchRobots: () => dispatch(fetchRobots()),

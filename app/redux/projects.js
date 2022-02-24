@@ -3,6 +3,7 @@ import axios from 'axios';
 // ACTION TYPES
 const SET_PROJECTS = 'SET_PROJECTS';
 const GOT_SINGLE_PROJECT = 'GOT_SINGLE_PROJECT';
+const CREATE_PROJECT = 'CREATE_PROJECT';
 
 // ACTION CREATORS
 const _setProjects = (projects) => {
@@ -17,12 +18,12 @@ const _gotSingleProject = (project) => ({
   project,
 });
 
-// const _createProject = (project) => {
-//   return {
-//     type: CREATE_PROJECT,
-//     project,
-//   };
-// };
+const _createProject = (project) => {
+  return {
+    type: CREATE_PROJECT,
+    project,
+  };
+};
 
 // const _updateProject = (project) => {
 //   return {
@@ -54,34 +55,35 @@ export const getSingleProject = (id) => async (dispatch) => {
   const { data } = await axios.get(`/api/projects/${id}`);
   console.log('project data', data);
   dispatch(_gotSingleProject(data));
-
-  // export const createProject = (project, history) => {
-  //   return async (dispatch) => {
-  //     const { data: created } = await axios.post('/api/projects', project);
-  //     dispatch(_createProject(created));
-  //     history.push('/');
-  //   };
-  // };
-
-  // export const updateProject = (project, history) => {
-  //   return async (dispatch) => {
-  //     const { data: updated } = await axios.put(
-  //       `/api/projects/${project.id}`,
-  //       project
-  //     );
-  //     dispatch(_updateProject(updated));
-  //     history.push('/');
-  //   };
-  // };
-
-  // export const deleteProject = (id, history) => {
-  //   return async (dispatch) => {
-  //     const { data: project } = await axios.delete(`/api/projects/${id}`);
-  //     dispatch(_deleteProject(project));
-  //     history.push('/');
-  //   };
-  // };
 };
+
+export const createProject = (project, history) => {
+  return async (dispatch) => {
+    const { data: created } = await axios.post('/api/projects', project);
+    dispatch(_createProject(created));
+    history.push('/projects');
+  };
+};
+
+// export const updateProject = (project, history) => {
+//   return async (dispatch) => {
+//     const { data: updated } = await axios.put(
+//       `/api/projects/${project.id}`,
+//       project
+//     );
+//     dispatch(_updateProject(updated));
+//     history.push('/');
+//   };
+// };
+
+// export const deleteProject = (id, history) => {
+//   return async (dispatch) => {
+//     const { data: project } = await axios.delete(`/api/projects/${id}`);
+//     dispatch(_deleteProject(project));
+//     history.push('/');
+//   };
+// };
+// };
 
 const initialState = {
   projects: [],

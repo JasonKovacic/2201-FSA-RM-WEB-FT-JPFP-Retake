@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AddRobot from
+import { createRobot } from '../redux/robots';
+// import { history } from 'react-router';
 
 class AddRobot extends Component {
   constructor(props) {
@@ -13,14 +14,15 @@ class AddRobot extends Component {
 
   handleKey(evt) {
     if (evt.key === 'Enter') {
-      this.props.add(this.state.input);
+      this.props.createNewRobot(this.state.input);
       this.setState({ input: '' });
     }
   }
 
   render() {
     return (
-      <div className="add-robot">
+      <div>
+        <h2>Add a robot</h2>
         <input
           type="text"
           value={this.state.input}
@@ -30,8 +32,9 @@ class AddRobot extends Component {
         <button
           type="button"
           onClick={() => {
-            this.props.add(this.state.input);
-            this.setState({ input: '' });
+            // this.props.add(this.state.input);
+            // this.setState({ input: '' });
+            this.props.createNewRobot(this.state.input);
           }}
         >
           Add Robot
@@ -41,4 +44,8 @@ class AddRobot extends Component {
   }
 }
 
-export default AddRobot;
+const mapDispatchToProps = (dispatch, { history }) => ({
+  createNewRobot: (name) => dispatch(createRobot(name, history)),
+});
+
+export default connect(null, mapDispatchToProps)(AddRobot);

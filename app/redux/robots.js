@@ -3,30 +3,28 @@ import axios from 'axios';
 // ACTION TYPES
 const SET_ROBOTS = 'SET_ROBOTS';
 const GOT_SINGLE_ROBOT = 'GOT_SINGLE_ROBOT';
+const CREATE_ROBOT = 'ROBOT_CREATED';
 
 // ACTION CREATORS
 
-const _setRobots = (robots) => ({
-  type: SET_ROBOTS,
-  robots,
-});
+const _setRobots = (robots) => {
+  return {
+    type: SET_ROBOTS,
+    robots,
+  };
+};
 
 const _gotSingleRobot = (robot) => ({
   type: GOT_SINGLE_ROBOT,
   robot,
 });
 
-const _ = (robots) => ({
-  type: GOT_ALL_ROBOTS,
-  robots,
-});
-
-// const _createRobot = (robot) => {
-//   return {
-//     type: CREATE_ROBOT,
-//     robot,
-//   };
-// };
+const _createRobot = (robot) => {
+  return {
+    type: CREATE_ROBOT,
+    robot,
+  };
+};
 
 // const _updateRobot = (robot) => {
 //   return {
@@ -53,13 +51,11 @@ export const getSingleRobot = (id) => async (dispatch) => {
   dispatch(_gotSingleRobot(data));
 };
 
-// export const createRobot = (robot, history) => {
-//   return async (dispatch) => {
-//     const { data: created } = await axios.post('/api/robots', robot);
-//     dispatch(_createRobot(created));
-//     history.push('/');
-//   };
-// };
+export const createRobot = (robotName, history) => async (dispatch) => {
+  const { data } = await axios.post('/api/robots', { name: robotName });
+  dispatch(_createRobot(data));
+  history.push('/robots');
+};
 
 // export const updateRobot = (robot, history) => {
 //   return async (dispatch) => {
@@ -88,8 +84,11 @@ const robotsReducer = (state = initialState, action) => {
       return { ...state, robots: action.robots };
     case GOT_SINGLE_ROBOT:
       return { ...state, singleRobot: action.robot };
-    //   case CREATE_ROBOT:
-    //   return [...state, action.robot];
+    case CREATE_ROBOT:
+      return {
+        ...state,
+        robots: [...state.robots, action.robot],
+      };
     // case DELETE_ROBOT:
     //   return state.filter((robot) => robot.id !== action.robot.id);
     // case UPDATE_ROBOT:
