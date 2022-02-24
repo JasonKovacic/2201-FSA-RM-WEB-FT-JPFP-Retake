@@ -18,6 +18,7 @@ const Project = db.define('project', {
   priority: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    defaultValue: 5,
     validate: {
       min: 0,
       max: 10,
@@ -30,7 +31,7 @@ const Project = db.define('project', {
   },
   description: {
     type: Sequelize.TEXT,
-    allowNull: false,
+    // allowNull: false,
     validate: {
       notEmpty: true,
     },

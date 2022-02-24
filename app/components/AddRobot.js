@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createRobot } from '../redux/robots';
-// import { history } from 'react-router';
 
 class AddRobot extends Component {
   constructor(props) {

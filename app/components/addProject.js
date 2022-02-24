@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createProject } from '../redux/projects';
-// import AddProject from
 
 class AddProject extends Component {
   constructor(props) {
@@ -14,7 +13,7 @@ class AddProject extends Component {
 
   handleKey(evt) {
     if (evt.key === 'Enter') {
-      this.props.add(this.state.input);
+      this.props.createNewProject(this.state.input);
       this.setState({ input: '' });
     }
   }
@@ -22,6 +21,7 @@ class AddProject extends Component {
   render() {
     return (
       <div>
+        <h2>Add a Project</h2>
         <input
           type="text"
           value={this.state.input}

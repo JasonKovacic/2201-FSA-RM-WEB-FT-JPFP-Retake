@@ -6,6 +6,7 @@ import SingleProject from './SingleProject';
 import SingleRobot from './SingleRobot';
 import AddRobot from './AddRobot';
 import AddProject from './AddProject';
+import NotFound from './NotFound';
 
 const Routes = () => {
   return (
@@ -45,6 +46,7 @@ const Routes = () => {
           <Route exact path="/addProject" component={AddProject} />
           <Route exact path="/projects" component={AllProjects} />
           <Route exact path="/projects/:id" component={SingleProject} />
+          <Route component={NotFound} />
         </Switch>
       </div>
     </Router>

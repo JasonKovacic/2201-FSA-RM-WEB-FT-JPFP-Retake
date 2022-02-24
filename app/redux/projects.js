@@ -40,10 +40,10 @@ const _createProject = (project) => {
 // };
 
 // THUNK CREATORS
-export const fetchProjects = (projects) => {
+export const fetchProjects = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get('/api/projects', projects);
+      const { data } = await axios.get('/api/projects');
       dispatch(_setProjects(data));
     } catch (err) {
       console.log(err);
@@ -57,12 +57,18 @@ export const getSingleProject = (id) => async (dispatch) => {
   dispatch(_gotSingleProject(data));
 };
 
-export const createProject = (project, history) => {
-  return async (dispatch) => {
-    const { data: created } = await axios.post('/api/projects', project);
-    dispatch(_createProject(created));
-    history.push('/projects');
-  };
+// export const createProject = (projectTitle, history) => {
+//   return async (dispatch) => {
+//     const { data } = await axios.post('/api/projects', { title: projectTitle });
+//     dispatch(_createProject(data));
+//     history.push('/projects');
+//   };
+// };
+
+export const createProject = (projectTitle, history) => async (dispatch) => {
+  const { data } = await axios.post('/api/projects', { title: projectTitle });
+  dispatch(_createProject(data));
+  history.push('/projects');
 };
 
 // export const updateProject = (project, history) => {
@@ -96,9 +102,11 @@ const projectsReducer = (state = initialState, action) => {
       return { ...state, projects: action.projects };
     case GOT_SINGLE_PROJECT:
       return { ...state, singleProject: action.project };
-
-    // case CREATE_PROJECT:
-    //   return [...state, action.project];
+    case CREATE_PROJECT:
+      return {
+        ...state,
+        projects: [...state.projects, action.project],
+      };
     // case DELETE_PROJECT:
     //   return state.filter((project) => project.id !== action.project.id);
     // case UPDATE_PROJECT:
