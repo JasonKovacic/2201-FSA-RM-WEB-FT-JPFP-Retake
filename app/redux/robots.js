@@ -55,6 +55,7 @@ export const getSingleRobot = (id) => async (dispatch) => {
 export const createRobot = (robotName, history) => async (dispatch) => {
   const { data } = await axios.post('/api/robots', { name: robotName });
   dispatch(_createRobot(data));
+  console.log('history:', history);
   history.push('/robots');
 };
 
@@ -65,10 +66,12 @@ export const createRobot = (robotName, history) => async (dispatch) => {
 //     history.push('/');
 //   };
 // };
-export const deleteRobot = (id) => async (dispatch) => {
+export const deleteRobot = (id, history) => async (dispatch) => {
   const { data } = await axios.delete(`/api/robots/${id}`);
-  dispatch(_deleteRobot(data));
+  console.log('history in delete robot:' + history);
+  console.log(history);
   history.push('/robots');
+  dispatch(_deleteRobot(data));
 };
 
 const initialState = {
@@ -88,10 +91,12 @@ const robotsReducer = (state = initialState, action) => {
         robots: [...state.robots, action.robot],
       };
     case DELETE_ROBOT:
-      return {
-        ...state,
-        robots: [...state.robots, action.robot],
-      };
+      return state.robots.filter((robot) => robot.id !== action.robot.id);
+
+    // return {
+    //   ...state,
+    //   robots: [...state.robots, action.robot],
+    // };
 
     // case DELETE_ROBOT:
     //   return state.filter((robot) => robot.id !== action.robot.id);

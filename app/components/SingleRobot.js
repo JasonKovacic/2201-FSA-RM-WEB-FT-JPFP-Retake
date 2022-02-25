@@ -29,7 +29,7 @@ class SingleRobot extends React.Component {
         <p>
           <button
             type="button"
-            onClick={() => this.props.deleteRobot(this.props)}
+            onClick={() => this.props.deleteRobot(this.props.match.params.id)}
           >
             X
           </button>
@@ -56,10 +56,10 @@ const mapStateToProps = (state) => ({
   singleRobot: state.robots.singleRobot,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch, { history }) => ({
   getSingleRobot: (id) => dispatch(getSingleRobot(id)),
   // updateRobot: (todo) => dispatch(updateTodo(todo, history)),
-  deleteRobot: (state) => dispatch(deleteRobot(state)),
+  deleteRobot: (state) => dispatch(deleteRobot(state, history)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleRobot);

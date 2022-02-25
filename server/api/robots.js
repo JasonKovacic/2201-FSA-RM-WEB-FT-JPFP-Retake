@@ -44,5 +44,15 @@ router.delete('/:id', async (req, res, next) => {
     next(error);
   }
 });
+// // similar route
+// router.delete('/:id', async (req, res, next) => {
+//   try {
+//     const todo = await Todo.findByPk(req.params.id);
+//     await todo.destroy();
+//     res.send(todo);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 module.exports = router;
