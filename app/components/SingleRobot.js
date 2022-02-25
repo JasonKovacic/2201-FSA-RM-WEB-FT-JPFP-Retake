@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { deleteRobot, getSingleRobot } from '../redux/robots';
+import { Link } from 'react-router-dom';
 //import {getSingleCandy, increaseQuantity, decreaseQuantity} from '../reducers'
 
 class SingleRobot extends React.Component {
@@ -39,7 +40,9 @@ class SingleRobot extends React.Component {
           {singleRobot.projects && singleRobot.projects.length
             ? singleRobot.projects.map((project) => (
                 <div key={project.id}>
-                  <li>{project.title}</li>
+                  <Link to={`/projects/${project.id}`}>
+                    <li>{project.title}</li>
+                  </Link>
                 </div>
               ))
             : 'No projects assigned'}
