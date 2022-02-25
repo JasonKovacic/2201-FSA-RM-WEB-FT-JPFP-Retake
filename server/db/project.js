@@ -7,7 +7,6 @@ const Project = db.define('project', {
     allowNull: false,
     validate: {
       notEmpty: true,
-      min: 0,
     },
   },
   deadline: {

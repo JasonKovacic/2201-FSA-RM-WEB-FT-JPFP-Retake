@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchRobots } from '../redux/robots';
 import { Link } from 'react-router-dom';
 import Robot from './Robot';
+import { deleteRobot } from '../redux/robots';
 
 //axios
 

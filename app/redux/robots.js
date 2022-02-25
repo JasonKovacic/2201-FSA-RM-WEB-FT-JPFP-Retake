@@ -4,6 +4,7 @@ import axios from 'axios';
 const SET_ROBOTS = 'SET_ROBOTS';
 const GOT_SINGLE_ROBOT = 'GOT_SINGLE_ROBOT';
 const CREATE_ROBOT = 'ROBOT_CREATED';
+const DELETE_ROBOT = 'DELETE_ROBOT';
 
 // ACTION CREATORS
 
@@ -33,12 +34,12 @@ const _createRobot = (robot) => {
 //   };
 // };
 
-// const _deleteRobot = (robot) => {
-//   return {
-//     type: DELETE_ROBOT,
-//     robot,
-//   };
-// };
+const _deleteRobot = (robot) => {
+  return {
+    type: DELETE_ROBOT,
+    robot,
+  };
+};
 
 // THUNK CREATORS
 export const fetchRobots = () => async (dispatch) => {
@@ -64,14 +65,11 @@ export const createRobot = (robotName, history) => async (dispatch) => {
 //     history.push('/');
 //   };
 // };
-
-// export const deleteRobot = (id, history) => {
-//   return async (dispatch) => {
-//     const { data: robot } = await axios.delete(`/api/robots/${id}`);
-//     dispatch(_deleteRobot(robot));
-//     history.push('/');
-//   };
-// };
+export const deleteRobot = (id) => async (dispatch) => {
+  const { data } = await axios.delete(`/api/robots/${id}`);
+  dispatch(_deleteRobot(data));
+  history.push('/robots');
+};
 
 const initialState = {
   robots: [],
@@ -89,6 +87,12 @@ const robotsReducer = (state = initialState, action) => {
         ...state,
         robots: [...state.robots, action.robot],
       };
+    case DELETE_ROBOT:
+      return {
+        ...state,
+        robots: [...state.robots, action.robot],
+      };
+
     // case DELETE_ROBOT:
     //   return state.filter((robot) => robot.id !== action.robot.id);
     // case UPDATE_ROBOT:

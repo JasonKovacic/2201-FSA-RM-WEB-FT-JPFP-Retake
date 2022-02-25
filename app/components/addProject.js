@@ -32,6 +32,7 @@ class AddProject extends Component {
           type="button"
           onClick={() => {
             // change to this vvvv
+            console.log('this..state.input', this.state.input);
             this.props.createNewProject(this.state.input);
           }}
         >

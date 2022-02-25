@@ -14,6 +14,8 @@ const Robot = (props) => {
         <p>{name}</p>
       </Link>
       <p>{imgUrl}</p>
+      {/* <p><button onClick="Delete">X</button></p> */}
+      <p>TESTTTTTTTT</p>
     </div>
   );
 };

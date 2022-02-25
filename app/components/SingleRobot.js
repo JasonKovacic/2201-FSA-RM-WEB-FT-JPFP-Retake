@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getSingleRobot } from '../redux/robots';
+import { deleteRobot, getSingleRobot } from '../redux/robots';
 //import {getSingleCandy, increaseQuantity, decreaseQuantity} from '../reducers'
 
 class SingleRobot extends React.Component {
@@ -25,6 +25,15 @@ class SingleRobot extends React.Component {
           <li>fuel type: {singleRobot.fuelType}</li>
           <li>fuel level: {singleRobot.fuelLevel}</li>
         </ul>
+        <p>
+          <button
+            type="button"
+            onClick={() => this.props.deleteRobot(this.props)}
+          >
+            X
+          </button>
+        </p>
+
         <h2> Projects Assigned:</h2>
         <ul>
           {singleRobot.projects && singleRobot.projects.length
@@ -46,6 +55,21 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getSingleRobot: (id) => dispatch(getSingleRobot(id)),
+  // updateRobot: (todo) => dispatch(updateTodo(todo, history)),
+  deleteRobot: (state) => dispatch(deleteRobot(state)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleRobot);
+
+// const mapStateToProps = ({ todo }) => ({
+//   todo
+// });
+
+// const mapDispatchToProps = (dispatch, { history }) => ({
+//   updateTodo: (todo) => dispatch(updateTodo(todo, history)),
+//   deleteTodo: (todo) => dispatch(deleteTodo(todo, history)),
+//   fetchTodo: (id) => dispatch(fetchTodo(id)),
+//   clearTodo: () => dispatch(_setTodo({}))
+// });
+
+// export default connect(mapStateToProps, mapDispatchToProps)(EditTodo);
