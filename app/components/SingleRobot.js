@@ -28,7 +28,7 @@ class SingleRobot extends React.Component {
         </ul>
         <p>
           <button
-            type="button"
+            // type="button"
             onClick={() => this.props.deleteRobot(this.props.match.params.id)}
           >
             X

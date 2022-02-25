@@ -1,9 +1,11 @@
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 // ACTION TYPES
 const SET_PROJECTS = 'SET_PROJECTS';
 const GOT_SINGLE_PROJECT = 'GOT_SINGLE_PROJECT';
 const CREATE_PROJECT = 'CREATE_PROJECT';
+const DELETE_PROJECT = 'DELETE_PROJECT';
 
 // ACTION CREATORS
 const _setProjects = (projects) => {
@@ -32,25 +34,23 @@ const _createProject = (project) => {
 //   };
 // };
 
-// const _deleteProject = (project) => {
-//   return {
-//     type: DELETE_PROJECT,
-//     project,
-//   };
-// };
-
-// THUNK CREATORS
-export const fetchProjects = () => {
-  return async (dispatch) => {
-    try {
-      const { data } = await axios.get('/api/projects');
-      dispatch(_setProjects(data));
-    } catch (err) {
-      console.log(err);
-    }
+const _deleteProject = (project) => {
+  return {
+    type: DELETE_PROJECT,
+    project,
   };
 };
 
+// THUNK CREATORS
+
+export const fetchProjects = () => async (dispatch) => {
+  try {
+    const { data } = await axios.get('/api/projects');
+    dispatch(_setProjects(data));
+  } catch (err) {
+    console.log(err);
+  }
+};
 export const getSingleProject = (id) => async (dispatch) => {
   const { data } = await axios.get(`/api/projects/${id}`);
   console.log('project data', data);
@@ -69,6 +69,16 @@ export const createProject = (projectTitle, history) => async (dispatch) => {
   const { data } = await axios.post('/api/projects', { title: projectTitle });
   dispatch(_createProject(data));
   history.push('/projects');
+};
+export const deleteProject = (id, history) => async (dispatch) => {
+  const { data } = await axios.delete(`/api/projects/${id}`);
+  // const history = useHistory();
+  console.log('history in delete project:');
+
+  console.log(history);
+
+  history.push('/projects');
+  dispatch(_deleteProject(data));
 };
 
 // export const updateProject = (project, history) => {
@@ -107,6 +117,10 @@ const projectsReducer = (state = initialState, action) => {
         ...state,
         projects: [...state.projects, action.project],
       };
+    case DELETE_PROJECT:
+      return state.projects.filter(
+        (project) => project.id !== action.project.id
+      );
     // case DELETE_PROJECT:
     //   return state.filter((project) => project.id !== action.project.id);
     // case UPDATE_PROJECT:
